@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <style>
+    /* Remove the navbar's default rounded borders and increase the bottom margin */
+    div.panel-heading {
+      font-size: 25px;
+    }
+    div.panel-footer {
+      font-size: 18px;
+    }
+    div.col-sm-12 {
+      margin-bottom: 50px;
+    }
+    .navbar {
+      margin-bottom: 50px;
+      border-radius: 0;
+    }
+    
+    /* Remove the jumbotron's default bottom margin */ 
+     .jumbotron {
+      margin-bottom: 0;
+    }
+   
+    /* Add a gray background color and some padding to the footer */
+    footer {
+      background-color: #f2f2f2;
+      padding: 25px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="jumbotron">
+  <div class="container text-center">
+    <h1>CTF - 590A</h1>      
+    <h2>Please read the instructions</h2>
+  </div>
+    <ul>
+      <li><p style="font-size:120%;">There are {{ all_challenges|length }} challenges in all</p></li>
+      <li><p style="font-size:120%;">Read the descriptions and download provided attachments, if any.</p></li>
+      <li><p style="font-size:120%;">Access the hints if you feel stuck at a challenge</p></li>
+      <li><p style="font-size:120%;">All flags are of the format SDAT{...}</p></li>
+    </ul>
+</div>
+
+<script>
+  function hintRevealer(hint) {
+    document.getElementById("demo").innerHTML = hint;
+  }
+</script>
+
+<div class="container">
+  <div class="row">
+    {% for challenge in all_challenges %}
+      <div class="col-sm-12">
+        <div class="panel panel-primary">
+          <div class="panel-heading">{{ challenge['name'] }}</div>
+          <div class="panel-footer">{{ challenge['description'] }}</div>
+          {% for filename, file_info in all_static.get(loop.index, {}).items() %}
+            <p><a href={{ file_info[1] }} target="_blank" rel="noopener noreferrer">{{ filename }}</a></p>
+          {% endfor %}
+          <button onclick="hintRevealer{{ loop.index }}('{{ challenge["hint"] }}')">Hint</button>
+          <p id="hintspace{{ loop.index }}"></p>
+          <script>
+            function hintRevealer{{ loop.index }}(hint) {
+              document.getElementById("hintspace{{ loop.index }}").innerHTML = hint;
+            }
+          </script>
+          <form action="/submit" method="post">
+            <input type = "hidden" name = "id" value = {{ loop.index }} />
+            {% if status.get(loop.index).startswith("SDAT") %}
+                <p style="background-color:rgb(173, 221, 100);width:250px;" > {{status.get(loop.index)}} </p>
+            {% else %}
+            <input type="text" size="40" placeholder="{{ status.get(loop.index) }}" name="submitted_flag" value="{{
+              request.form.submitted_flag }}">
+            <input class="btn btn-default" type="submit" value="submit">
+            {% endif %}
+          </form>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+</body>
+</html>

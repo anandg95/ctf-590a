@@ -1,0 +1,21 @@
+FROM python:3.8-slim-buster
+RUN apt-get update \
+    && apt-get -y install python2 \
+    && apt-get -y install ncat \
+    && apt-get -y install sqlite3
+RUN mkdir /app
+COPY requirements.txt .
+RUN pip3 install -r requirements.txt
+COPY app /app
+COPY deploy/start.sh /app
+COPY requirements.txt .
+WORKDIR  /app
+ENTRYPOINT ["./start.sh"]
+
+
+# docker build -f deploy/dockerfile --tag ctf-590-ag:latest .
+# sudo docker run -it --network host --rm --name ctf ctf-590-ag:latest
+
+# OR pull from dockerhub
+# docker volume create db-ag
+# sudo docker run -it -v db-ag:/app --rm --network host --name ctf-ag anandg95/ctf-590-ag:latest
