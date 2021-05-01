@@ -1,0 +1,5 @@
+{
+    "name": "Cipher",
+    "description": "Decode the Ciphertext : TFDX{WUAICSZZNZREUW}",
+    "hint": "Vignere Cipher one shift at a time"
+}

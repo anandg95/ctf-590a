@@ -1,0 +1,5 @@
+{
+    "name": "Steganography",
+    "description": "Steganography : The technique of hiding secret data within an ordinary, non-secret, file or message",
+    "hint": "Look for the EOF of the JPEG image"
+}

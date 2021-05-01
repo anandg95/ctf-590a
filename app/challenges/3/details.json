@@ -1,0 +1,5 @@
+{
+    "name": "Guess the passkey",
+    "description": "Go to http://localhost:5678/ and enter the correct 4 digit passkey to access the flag",
+    "hint": "Is guessing passkeys one by one taking too long?"
+}

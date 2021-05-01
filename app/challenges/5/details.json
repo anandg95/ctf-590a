@@ -1,0 +1,5 @@
+{
+    "name": "Netcat-2",
+    "description": "Connect to nc localhost 5680 and follow the prompt.",
+    "hint": "Notice what version of python is running? Check for vulnerabilities in the built-in functions used."
+}

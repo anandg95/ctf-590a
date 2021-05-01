@@ -1,0 +1,5 @@
+{
+    "name": "Agency",
+    "description": "Go to http://localhost:5682 to retrieve the flag",
+    "hint": "How does the server know what browser you are using?"
+}

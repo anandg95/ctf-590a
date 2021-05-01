@@ -1,0 +1,6 @@
+{
+    "name": "Netcat-1",
+    "description": "Connect to nc localhost 5679 and enter the passcode. Find the source code in the attachment. Notice how a critical code section has been left commented?",
+    "hint": "Buffer overflow",
+    "persist_flag": true
+}

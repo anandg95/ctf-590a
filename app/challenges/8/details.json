@@ -1,0 +1,5 @@
+{
+    "name": "Netcat-3",
+    "description": "Connect to nc localhost 5683. The executable listening is attached. (Disclaimer : This question is ripped directly from PicoCTF 2018)",
+    "hint": "We are looking for a shellcode here.  Find the right payload at http://shell-storm.org/shellcode/. Use the OS/architecture info provided in the attachments"
+}

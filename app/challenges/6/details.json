@@ -1,0 +1,5 @@
+{
+    "name": "SQL Injection",
+    "description": "Go to http://localhost:5681 and login to get the key",
+    "hint": "The title is a dead giveaway. Search for common SQL injection inputs"
+}
